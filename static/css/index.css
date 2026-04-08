@@ -202,17 +202,112 @@ body {
   transition: opacity 0.2s ease;
 }
 
-.demo-wrapper {
-  max-width: 700px;
-  margin: 0 auto;
+/* ===== Demo section layout ===== */
+
+.demo-carousel {
+  margin-top: 1rem;
 }
 
-.demo-slider-image {
+.demo-carousel .item {
+  border: none;
+  background: transparent;
+}
+
+.demo-carousel .slider-navigation-next,
+.demo-carousel .slider-navigation-previous {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.demo-carousel .slider-navigation-next svg,
+.demo-carousel .slider-navigation-previous svg {
+  width: 28px;
+  height: 28px;
+}
+
+.lightlab-demo {
+  position: relative;
+  width: 100%;
+  display: inline-block;
+}
+
+.demo_img {
   display: block;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 0;
 }
 
-.demo-slider-bar {
-  margin-top: 1rem;
+.slider_group {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.demo_slider_container {
+  position: absolute;
+  width: 16%;
+  min-width: 80px;
+  transform: translate(-50%, -50%);
+  pointer-events: auto;
+}
+
+.demo-control-slider {
+  width: 100%;
+  --SliderColor: #ffffff;
+}
+
+/* intensity slider: 白色 */
+.demo-control-slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 999px;
+}
+
+.demo-control-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  margin-top: -6px;
+  cursor: pointer;
+}
+
+.demo-control-slider::-moz-range-track {
+  height: 6px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 999px;
+}
+
+.demo-control-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+/* color slider: 會跟 JS 設定的 --SliderColor 走 */
+.color-demo-slider::-webkit-slider-runnable-track {
+  background: var(--SliderColor);
+}
+
+.color-demo-slider::-webkit-slider-thumb {
+  background: #ffffff;
+  border: 2px solid var(--SliderColor);
+}
+
+.color-demo-slider::-moz-range-track {
+  background: var(--SliderColor);
+}
+
+.color-demo-slider::-moz-range-thumb {
+  background: #ffffff;
+  border: 2px solid var(--SliderColor);
 }

@@ -1,23 +1,23 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-var INTERP_BASE = "./static/interpolation/stacked";
-var NUM_INTERP_FRAMES = 240;
+// var INTERP_BASE = "./static/interpolation/stacked";
+// var NUM_INTERP_FRAMES = 240;
 
-var interp_images = [];
-function preloadInterpolationImages() {
-  for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
-    var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
-    interp_images[i] = new Image();
-    interp_images[i].src = path;
-  }
-}
+// var interp_images = [];
+// function preloadInterpolationImages() {
+//   for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
+//     var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
+//     interp_images[i] = new Image();
+//     interp_images[i].src = path;
+//   }
+// }
 
-function setInterpolationImage(i) {
-  var image = interp_images[i];
-  image.ondragstart = function() { return false; };
-  image.oncontextmenu = function() { return false; };
-  $('#interpolation-image-wrapper').empty().append(image);
-}
+// function setInterpolationImage(i) {
+//   var image = interp_images[i];
+//   image.ondragstart = function() { return false; };
+//   image.oncontextmenu = function() { return false; };
+//   $('#interpolation-image-wrapper').empty().append(image);
+// }
 
 function loadOverlay(overlayDiv) {
   if (!overlayDiv) return;
@@ -114,15 +114,58 @@ function setupOverlayCarousel() {
   }
 }
 
-function setupSimpleImageSlider(sliderId, imageId, basePath, ext = "png") {
-  const slider = document.getElementById(sliderId);
-  const image = document.getElementById(imageId);
+function setupInteractiveDemoSliders() {
+  const defaultColorMap = [
+    "#ffffff",
+    "#ff4fcf",
+    "#ff9bdc",
+    "#9b59ff",
+    "#4fc3ff"
+  ];
 
-  if (!slider || !image) return;
+  const sliderGroups = document.querySelectorAll('.slider_group');
 
-  slider.addEventListener("input", function () {
-    const value = this.value;
-    image.src = `${basePath}/${value}.${ext}`;
+  sliderGroups.forEach((sliderGroup) => {
+    const demoRoot = sliderGroup.closest('.lightlab-demo');
+    const img = demoRoot ? demoRoot.querySelector('.demo_img') : null;
+    if (!img) return;
+
+    const basePath = sliderGroup.dataset.base;
+
+    // 每個 demo 自己的顏色表，沒設就用 default
+    const colorMap = sliderGroup.dataset.colors
+      ? sliderGroup.dataset.colors.split(',').map(c => c.trim())
+      : defaultColorMap;
+
+    const containers = sliderGroup.querySelectorAll('.demo_slider_container');
+
+    containers.forEach(container => {
+      const slider = container.querySelector('input[type="range"]');
+      if (!slider) return;
+
+      const x = parseFloat(container.dataset.x || "0.5") * 100;
+      const y = parseFloat(container.dataset.y || "0.5") * 100;
+      container.style.left = `${x}%`;
+      container.style.top = `${y}%`;
+
+      img.src = `${basePath}${slider.value}.png`;
+
+      if (slider.dataset.demoType === "color") {
+        const initValue = parseInt(slider.value, 10);
+        const initColor = colorMap[initValue] || colorMap[0] || "#ffffff";
+        slider.style.setProperty('--SliderColor', initColor);
+      }
+
+      slider.addEventListener('input', function () {
+        const value = parseInt(this.value, 10);
+        img.src = `${basePath}${value}.png`;
+
+        if (this.dataset.demoType === "color") {
+          const currentColor = colorMap[value] || colorMap[0] || "#ffffff";
+          this.style.setProperty('--SliderColor', currentColor);
+        }
+      });
+    });
   });
 }
 
@@ -136,43 +179,59 @@ $(document).ready(function() {
 
     });
 
-    var options = {
-			slidesToScroll: 1,
-			slidesToShow: 3,
-			loop: true,
-			infinite: true,
-			autoplay: false,
-			autoplaySpeed: 3000,
-    }
+    // Top paired carousel
+    var topCarousels = bulmaCarousel.attach('#results-carousel', {
+      slidesToScroll: 1,
+      slidesToShow: 3,
+      loop: true,
+      infinite: true,
+      autoplay: false,
+      autoplaySpeed: 3000,
+    });
+
+    // Intensity carousel: 一次只顯示一張
+    var intensityCarousels = bulmaCarousel.attach('#intensityCarousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      infinite: true,
+      autoplay: false,
+      autoplaySpeed: 3000,
+    });
+
+    // Color carousel: 一次只顯示一張
+    var colorCarousels = bulmaCarousel.attach('#colorCarousel', {
+      slidesToScroll: 1,
+      slidesToShow: 1,
+      loop: true,
+      infinite: true,
+      autoplay: false,
+      autoplaySpeed: 3000,
+    });
 
 		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
+    // var carousels = bulmaCarousel.attach('.carousel', options);
 
     setupOverlayCarousel();
+    setupInteractiveDemoSliders();
+    bulmaSlider.attach();
 
-    setupSimpleImageSlider(
-      "color-slider-dark2",
-      "color-demo-dark2",
-      "./static/images/slider/color/dark_2",
-      "png"
-    );
+    // // Loop on each carousel initialized
+    // for(var i = 0; i < carousels.length; i++) {
+    // 	// Add listener to  event
+    // 	carousels[i].on('before:show', state => {
+    // 		console.log(state);
+    // 	});
+    // }
 
-    // Loop on each carousel initialized
-    for(var i = 0; i < carousels.length; i++) {
-    	// Add listener to  event
-    	carousels[i].on('before:show', state => {
-    		console.log(state);
-    	});
-    }
-
-    // Access to bulmaCarousel instance of an element
-    var element = document.querySelector('#my-element');
-    if (element && element.bulmaCarousel) {
-    	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
-    }
+    // // Access to bulmaCarousel instance of an element
+    // var element = document.querySelector('#my-element');
+    // if (element && element.bulmaCarousel) {
+    // 	// bulmaCarousel instance is available as element.bulmaCarousel
+    // 	element.bulmaCarousel.on('before-show', function(state) {
+    // 		console.log(state);
+    // 	});
+    // }
 
     /*var player = document.getElementById('interpolation-video');
     player.addEventListener('loadedmetadata', function() {
@@ -181,14 +240,12 @@ $(document).ready(function() {
         player.currentTime = player.duration / 100 * this.value;
       })
     }, false);*/
-    preloadInterpolationImages();
+    // preloadInterpolationImages();
 
-    $('#interpolation-slider').on('input', function(event) {
-      setInterpolationImage(this.value);
-    });
-    setInterpolationImage(0);
-    $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
-
-    bulmaSlider.attach();
+    // $('#interpolation-slider').on('input', function(event) {
+    //   setInterpolationImage(this.value);
+    // });
+    // setInterpolationImage(0);
+    // $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
 
 })
