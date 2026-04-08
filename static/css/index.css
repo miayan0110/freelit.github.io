@@ -249,15 +249,15 @@ body {
 }
 
 .demo_slider {
-  --SliderColor: hsl(50, 100%, 50%);
+  --SliderColor: white;
   -webkit-appearance: none;
-  width: 20px;
-  height: 5px;
+  width: 16px;
+  height: 4px;
   outline: none;
   opacity: 1;
   transition: height, width .5s ease;
-  border-radius: 10px;
-  background-image: linear-gradient(to right, #f06 0%, #f06 2%, #f4d 18%, #94f 34%, #09f 50%, #7c3 66%, #fe0 82%, #fb0 98%, #fb0 100%);
+  border-radius: 999px;
+  background: var(--SliderColor);
 }
 
 .demo_slider_container > input {
@@ -278,24 +278,40 @@ body {
 .demo_slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 30px;
-  height: 30px;
-  border-radius: 17.5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
   background: var(--SliderColor);
+  border: 2px solid white;
   cursor: pointer;
   transition: all .5s ease;
 }
 
+.demo_slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--SliderColor);
+  border: 2px solid white;
+  cursor: pointer;
+}
+
 .demo_slider_container:hover .demo_slider::-webkit-slider-thumb {
-  width: 30px;
-  height: 30px;
-  border-radius: 12.5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.demo_slider_container:hover .demo_slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 
 .my_carousel-control {
   width: 60px;
   height: 30%;
-  top: 50%;
+  top: 58%;
   transform: translateY(-50%);
 }
 
