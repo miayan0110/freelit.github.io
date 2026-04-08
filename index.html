@@ -42,7 +42,7 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
       <span aria-hidden="true"></span>
@@ -80,7 +80,7 @@
     </div>
 
   </div>
-</nav>
+</nav> -->
 
 
 <section class="hero">
@@ -88,7 +88,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <!-- Title & Authors -->
-        <div class="column has-text-centered">
+        <!-- <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">FreeLit: Paired-Free Indoor Relighting via Physics-Guided Diffusion</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
@@ -107,15 +107,11 @@
             <span class="author-block">
               <a href="https://homes.cs.washington.edu/~seitz/">Ching-Chun Huang</a><sup>1</sup>,
             </span>
-            <!-- <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span> -->
           </div>
 
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>National Yang Ming Chiao Tung University</span>
-            <!-- <span class="author-block"><sup>2</sup>Google Research</span> -->
-          </div>
+          </div> -->
 
           <!-- Links -->
           <!-- <div class="column has-text-centered">
@@ -178,7 +174,7 @@
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
@@ -192,60 +188,36 @@
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 
-
+<!-- Top Carousel -->
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item">
+          <img src="./static/images/paired/dark_26_input.png" alt="input">
+          <div class="carousel-overlay" data-src="./static/images/paired/dark_26_output.png"></div>
         </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item">
+          <img src="./static/images/paired/dark_31_input.png" alt="input">
+          <div class="carousel-overlay" data-src="./static/images/paired/dark_31_output.png"></div>
         </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item">
+          <img src="./static/images/paired/dark_37_input.png" alt="input">
+          <div class="carousel-overlay" data-src="./static/images/paired/dark_37_output.png"></div>
         </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item">
+          <img src="./static/images/paired/lightlab_0_input.png" alt="input">
+          <div class="carousel-overlay" data-src="./static/images/paired/lightlab_0_output.png"></div>
         </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item">
+          <img src="./static/images/paired/lightlab_2_input.png" alt="input">
+          <div class="carousel-overlay" data-src="./static/images/paired/lightlab_2_output.png"></div>
         </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
+        <div class="item">
+          <img src="./static/images/paired/synth_12_input.png" alt="input">
+          <div class="carousel-overlay" data-src="./static/images/paired/synth_12_output.png"></div>
         </div>
       </div>
     </div>

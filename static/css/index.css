@@ -155,3 +155,49 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+/* ===== LightLab-style overlay toggle ===== */
+
+.results-carousel .item {
+  position: relative;
+}
+
+/* carousel 裡若改成圖片，確保圖片正常撐滿 */
+.results-carousel .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 第二張疊圖容器 */
+.carousel-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 疊圖本身 */
+.carousel-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 顯示 overlay 時 */
+.carousel-overlay.active {
+  opacity: 1;
+}
+
+/* 原圖被蓋掉時 */
+.results-carousel .item img.inactive {
+  opacity: 0;
+}
+
+/* 可選：讓切換更滑順 */
+.results-carousel .item > img {
+  transition: opacity 0.2s ease;
+}
