@@ -114,6 +114,18 @@ function setupOverlayCarousel() {
   }
 }
 
+function setupSimpleImageSlider(sliderId, imageId, basePath, ext = "png") {
+  const slider = document.getElementById(sliderId);
+  const image = document.getElementById(imageId);
+
+  if (!slider || !image) return;
+
+  slider.addEventListener("input", function () {
+    const value = this.value;
+    image.src = `${basePath}/${value}.${ext}`;
+  });
+}
+
 
 $(document).ready(function() {
     // Check for click events on the navbar burger icon
@@ -137,6 +149,13 @@ $(document).ready(function() {
     var carousels = bulmaCarousel.attach('.carousel', options);
 
     setupOverlayCarousel();
+
+    setupSimpleImageSlider(
+      "color-slider-dark2",
+      "color-demo-dark2",
+      "./static/images/slider/color/dark_2",
+      "png"
+    );
 
     // Loop on each carousel initialized
     for(var i = 0; i < carousels.length; i++) {

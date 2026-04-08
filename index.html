@@ -88,9 +88,9 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <!-- Title & Authors -->
-        <!-- <div class="column has-text-centered">
+        <div class="column has-text-centered">
           <h1 class="title is-1 publication-title">FreeLit: Paired-Free Indoor Relighting via Physics-Guided Diffusion</h1>
-          <div class="is-size-5 publication-authors">
+          <!-- <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://keunhong.com">Chi-En Yen</a><sup>1</sup>,</span>
             <span class="author-block">
@@ -240,24 +240,13 @@
           <p>
             In this paper, we present FreeLit, a paired-free framework for controllable indoor relighting that explicitly manipulates light-source location, color, and intensity. Instead of relying on paired supervision, we construct a physics-guided illumination prior from intrinsic scene properties, generating a structured lightmap along with a pseudo-relit image to guide diffusion-based synthesis. To address instability in intrinsic estimation, especially in low-light scenes, we introduce a relighting-guided intrinsic stabilization strategy that enforces illumination-invariant reflectance through structure-aware distillation and consistency constraints. Furthermore, we propose controllability-oriented evaluation metrics to quantify alignment with user-specified illumination color and intensity. Experimental results demonstrate that FreeLit achieves stable, physically consistent, and controllable relighting, with improved robustness in low-light indoor scenes, without requiring paired supervision.
           </p>
-          <!-- <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p> -->
         </div>
       </div>
     </div>
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
@@ -265,10 +254,61 @@
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Paper video. -->
   </div>
 </section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Interactive Demo</h2>
+    <!-- Demo 1 -->
+    <div class="demo-wrapper">
+      <img
+        id="color-demo-dark2"
+        class="demo-slider-image"
+        src="./static/images/slider/color/dark_2/0.png"
+        alt="color demo dark_2"
+      >
+
+      <div class="demo-slider-bar">
+        <input
+          id="color-slider-dark2"
+          class="slider is-fullwidth"
+          type="range"
+          min="0"
+          max="4"
+          step="1"
+          value="0"
+        >
+      </div>
+    </div>
+
+    <!-- Demo 2 -->
+    <div class="demo-wrapper">
+      <img
+        id="color-demo-stand202725"
+        class="demo-slider-image"
+        src="./static/images/slider/color/stand_202725/0.png"
+        alt="color demo stand_202725"
+      >
+
+      <div class="demo-slider-bar">
+        <input
+          id="color-slider-stand202725"
+          class="slider is-fullwidth"
+          type="range"
+          min="0"
+          max="4"
+          step="1"
+          value="0"
+        >
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
 
 <section class="section">
@@ -276,10 +316,10 @@
 
     <div class="columns is-centered">
 
-      <!-- Visual Effects. -->
+      <!-- Intensity Control. -->
       <div class="column">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
+          <h2 class="title is-3">Intensity Control</h2>
           <p>
             Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
             would be impossible without nerfies since it would require going through a wall.
@@ -290,11 +330,11 @@
           </video>
         </div>
       </div>
-      <!--/ Visual Effects. -->
+      <!--/ Intensity Control. -->
 
-      <!-- Matting. -->
+      <!-- Color Control. -->
       <div class="column">
-        <h2 class="title is-3">Matting</h2>
+        <h2 class="title is-3">Color Control</h2>
         <div class="columns is-centered">
           <div class="column content">
             <p>
@@ -310,7 +350,7 @@
         </div>
       </div>
     </div>
-    <!--/ Matting. -->
+    <!--/ Color Control. -->
 
     <!-- Animation. -->
     <div class="columns is-centered">
@@ -352,7 +392,7 @@
         <!--/ Interpolating. -->
 
         <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
+        <!-- <h3 class="title is-4">Re-rendering the input video</h3>
         <div class="content has-text-justified">
           <p>
             Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
@@ -369,7 +409,7 @@
             <source src="./static/videos/replay.mp4"
                     type="video/mp4">
           </video>
-        </div>
+        </div> -->
         <!--/ Re-rendering. -->
 
       </div>
@@ -378,7 +418,7 @@
 
 
     <!-- Concurrent Work. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Related Links</h2>
 
@@ -401,14 +441,14 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Concurrent Work. -->
 
   </div>
 </section>
 
-
-<section class="section" id="BibTeX">
+<!-- Citation -->
+<!-- <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{park2021nerfies,
@@ -418,7 +458,7 @@
   year      = {2021},
 }</code></pre>
   </div>
-</section>
+</section> -->
 
 
 <footer class="footer">
@@ -441,11 +481,7 @@
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
           <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
+            Website source code based on the <a href="https://github.com/nerfies/nerfies.github.io/tree/main">Nerfies</a> project page. If you want to reuse their source code, please credit them appropriately.
           </p>
         </div>
       </div>
