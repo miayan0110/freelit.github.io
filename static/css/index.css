@@ -174,7 +174,7 @@ body {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: none;
   pointer-events: none;
   z-index: 2;
 }
@@ -199,7 +199,7 @@ body {
 
 /* 可選：讓切換更滑順 */
 .results-carousel .item > img {
-  transition: opacity 0.2s ease;
+  transition: none;
 }
 
 /* ===== Demo section layout ===== */
@@ -259,14 +259,20 @@ body {
   --SliderColor: #ffffff;
 }
 
-/* intensity slider: 白色 */
-.demo-control-slider::-webkit-slider-runnable-track {
+input[type=range].slider.demo-control-slider {
+  width: 100%;
+  --SliderColor: #ffffff;
+}
+
+/* intensity slider */
+input[type=range].slider.demo-control-slider::-webkit-slider-runnable-track {
   height: 6px;
   background: rgba(255,255,255,0.9);
   border-radius: 999px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
 }
 
-.demo-control-slider::-webkit-slider-thumb {
+input[type=range].slider.demo-control-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 18px;
@@ -278,13 +284,14 @@ body {
   cursor: pointer;
 }
 
-.demo-control-slider::-moz-range-track {
+input[type=range].slider.demo-control-slider::-moz-range-track {
   height: 6px;
   background: rgba(255,255,255,0.9);
   border-radius: 999px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.5);
 }
 
-.demo-control-slider::-moz-range-thumb {
+input[type=range].slider.demo-control-slider::-moz-range-thumb {
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -293,21 +300,21 @@ body {
   cursor: pointer;
 }
 
-/* color slider: 會跟 JS 設定的 --SliderColor 走 */
-.color-demo-slider::-webkit-slider-runnable-track {
+/* color slider */
+input[type=range].slider.color-demo-slider::-webkit-slider-runnable-track {
   background: var(--SliderColor);
 }
 
-.color-demo-slider::-webkit-slider-thumb {
+input[type=range].slider.color-demo-slider::-webkit-slider-thumb {
   background: #ffffff;
   border: 2px solid var(--SliderColor);
 }
 
-.color-demo-slider::-moz-range-track {
+input[type=range].slider.color-demo-slider::-moz-range-track {
   background: var(--SliderColor);
 }
 
-.color-demo-slider::-moz-range-thumb {
+input[type=range].slider.color-demo-slider::-moz-range-thumb {
   background: #ffffff;
   border: 2px solid var(--SliderColor);
 }

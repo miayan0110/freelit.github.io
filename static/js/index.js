@@ -190,21 +190,21 @@ $(document).ready(function() {
     });
 
     // Intensity carousel: 一次只顯示一張
-    var intensityCarousels = bulmaCarousel.attach('#intensityCarousel', {
+    bulmaCarousel.attach('#intensityCarousel', {
       slidesToScroll: 1,
       slidesToShow: 1,
-      loop: true,
-      infinite: true,
+      loop: false,
+      infinite: false,
       autoplay: false,
       autoplaySpeed: 3000,
     });
 
     // Color carousel: 一次只顯示一張
-    var colorCarousels = bulmaCarousel.attach('#colorCarousel', {
+    bulmaCarousel.attach('#colorCarousel', {
       slidesToScroll: 1,
       slidesToShow: 1,
-      loop: true,
-      infinite: true,
+      loop: false,
+      infinite: false,
       autoplay: false,
       autoplaySpeed: 3000,
     });
