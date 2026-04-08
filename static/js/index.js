@@ -1,24 +1,5 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-// var INTERP_BASE = "./static/interpolation/stacked";
-// var NUM_INTERP_FRAMES = 240;
-
-// var interp_images = [];
-// function preloadInterpolationImages() {
-//   for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
-//     var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
-//     interp_images[i] = new Image();
-//     interp_images[i].src = path;
-//   }
-// }
-
-// function setInterpolationImage(i) {
-//   var image = interp_images[i];
-//   image.ondragstart = function() { return false; };
-//   image.oncontextmenu = function() { return false; };
-//   $('#interpolation-image-wrapper').empty().append(image);
-// }
-
 function loadOverlay(overlayDiv) {
   if (!overlayDiv) return;
   if (overlayDiv.querySelector('img')) return; // 避免重複加入
@@ -115,24 +96,15 @@ function setupOverlayCarousel() {
 }
 
 function setupInteractiveDemoSliders() {
-  const defaultColorMap = [
-    "#ffffff",
-    "#ff4fcf",
-    "#ff9bdc",
-    "#9b59ff",
-    "#4fc3ff"
-  ];
-
-  const sliderGroups = document.querySelectorAll('.slider_group');
+  const defaultColorMap = ["#f06", "#f4d", "#94f", "#09f", "#7c3", "#fe0", "#fb0"];
+  const sliderGroups = document.querySelectorAll('#intensityCarousel .slider_group, #colorCarousel .slider_group');
 
   sliderGroups.forEach((sliderGroup) => {
-    const demoRoot = sliderGroup.closest('.lightlab-demo');
+    const demoRoot = sliderGroup.closest('.centered-div') || sliderGroup.closest('.lightlab-demo');
     const img = demoRoot ? demoRoot.querySelector('.demo_img') : null;
     if (!img) return;
 
     const basePath = sliderGroup.dataset.base;
-
-    // 每個 demo 自己的顏色表，沒設就用 default
     const colorMap = sliderGroup.dataset.colors
       ? sliderGroup.dataset.colors.split(',').map(c => c.trim())
       : defaultColorMap;
@@ -147,22 +119,31 @@ function setupInteractiveDemoSliders() {
       const y = parseFloat(container.dataset.y || "0.5") * 100;
       container.style.left = `${x}%`;
       container.style.top = `${y}%`;
+      container.style.display = 'block';
 
-      img.src = `${basePath}${slider.value}.png`;
-
-      if (slider.dataset.demoType === "color") {
+      // 初始化 slider 顏色
+      if (slider.dataset.type === "color") {
         const initValue = parseInt(slider.value, 10);
         const initColor = colorMap[initValue] || colorMap[0] || "#ffffff";
         slider.style.setProperty('--SliderColor', initColor);
+      } else {
+        slider.style.setProperty('--SliderColor', "white");
+        slider.style.background = "transparent";
+        slider.style.height = "25px";
       }
 
       slider.addEventListener('input', function () {
         const value = parseInt(this.value, 10);
+
+        // 你的命名是 0.png, 1.png, 2.png ...
         img.src = `${basePath}${value}.png`;
 
-        if (this.dataset.demoType === "color") {
+        if (this.dataset.type === "color") {
           const currentColor = colorMap[value] || colorMap[0] || "#ffffff";
           this.style.setProperty('--SliderColor', currentColor);
+        } else {
+          this.style.setProperty('--SliderColor', "white");
+          this.style.background = "transparent";
         }
       });
     });
@@ -189,63 +170,7 @@ $(document).ready(function() {
       autoplaySpeed: 3000,
     });
 
-    // Intensity carousel: 一次只顯示一張
-    bulmaCarousel.attach('#intensityCarousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      loop: false,
-      infinite: false,
-      autoplay: false,
-      autoplaySpeed: 3000,
-    });
-
-    // Color carousel: 一次只顯示一張
-    bulmaCarousel.attach('#colorCarousel', {
-      slidesToScroll: 1,
-      slidesToShow: 1,
-      loop: false,
-      infinite: false,
-      autoplay: false,
-      autoplaySpeed: 3000,
-    });
-
-		// Initialize all div with carousel class
-    // var carousels = bulmaCarousel.attach('.carousel', options);
-
     setupOverlayCarousel();
     setupInteractiveDemoSliders();
-    bulmaSlider.attach();
-
-    // // Loop on each carousel initialized
-    // for(var i = 0; i < carousels.length; i++) {
-    // 	// Add listener to  event
-    // 	carousels[i].on('before:show', state => {
-    // 		console.log(state);
-    // 	});
-    // }
-
-    // // Access to bulmaCarousel instance of an element
-    // var element = document.querySelector('#my-element');
-    // if (element && element.bulmaCarousel) {
-    // 	// bulmaCarousel instance is available as element.bulmaCarousel
-    // 	element.bulmaCarousel.on('before-show', function(state) {
-    // 		console.log(state);
-    // 	});
-    // }
-
-    /*var player = document.getElementById('interpolation-video');
-    player.addEventListener('loadedmetadata', function() {
-      $('#interpolation-slider').on('input', function(event) {
-        console.log(this.value, player.duration);
-        player.currentTime = player.duration / 100 * this.value;
-      })
-    }, false);*/
-    // preloadInterpolationImages();
-
-    // $('#interpolation-slider').on('input', function(event) {
-    //   setInterpolationImage(this.value);
-    // });
-    // setInterpolationImage(0);
-    // $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
 
 })
