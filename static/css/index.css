@@ -248,10 +248,11 @@ body {
 
 .demo_slider_container {
   position: absolute;
-  width: 16%;
-  min-width: 80px;
+  width: 12%;
+  min-width: 72px;
   transform: translate(-50%, -50%);
   pointer-events: auto;
+  z-index: 20;
 }
 
 .demo-control-slider {
@@ -306,7 +307,7 @@ input[type=range].slider.color-demo-slider::-webkit-slider-runnable-track {
 }
 
 input[type=range].slider.color-demo-slider::-webkit-slider-thumb {
-  background: #ffffff;
+  background: solid var(--SliderColor);
   border: 2px solid var(--SliderColor);
 }
 
@@ -315,6 +316,49 @@ input[type=range].slider.color-demo-slider::-moz-range-track {
 }
 
 input[type=range].slider.color-demo-slider::-moz-range-thumb {
-  background: #ffffff;
+  background: solid var(--SliderColor);
   border: 2px solid var(--SliderColor);
+}
+
+/* ===== Fix demo carousel layout ===== */
+
+.section.is-light .columns > .column {
+  min-width: 0;
+}
+
+.demo-carousel {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.demo-carousel .slider {
+  width: 100% !important;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.demo-carousel .slider-container {
+  overflow: hidden;
+}
+
+.demo-carousel .slider-item {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+.lightlab-demo {
+  width: 100%;
+  max-width: 100%;
+}
+
+.lightlab-demo .demo_img {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.demo-carousel .slider-navigation-next,
+.demo-carousel .slider-navigation-previous {
+  z-index: 30;
 }
