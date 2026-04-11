@@ -128,23 +128,25 @@ function setupInteractiveDemoSliders() {
         slider.style.setProperty('--SliderColor', initColor);
       } else {
         slider.style.setProperty('--SliderColor', "white");
-        slider.style.background = "transparent";
-        slider.style.height = "25px";
       }
 
       slider.addEventListener('input', function () {
         const value = parseInt(this.value, 10);
 
-        // 你的命名是 0.png, 1.png, 2.png ...
+        // 🔥 圖片切換
         img.src = `${basePath}${value}.png`;
 
+        // 🔥 更新顏色
         if (this.dataset.type === "color") {
           const currentColor = colorMap[value] || colorMap[0] || "#ffffff";
           this.style.setProperty('--SliderColor', currentColor);
         } else {
           this.style.setProperty('--SliderColor', "white");
-          this.style.background = "transparent";
         }
+
+        // 🔥 加這段（進度條）
+        const percent = (this.value - this.min) / (this.max - this.min) * 100;
+        this.style.setProperty('--progress', percent + '%');
       });
     });
   });
