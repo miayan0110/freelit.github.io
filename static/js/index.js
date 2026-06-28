@@ -165,7 +165,7 @@ $(document).ready(function() {
     // Top paired carousel
     var topCarousels = bulmaCarousel.attach('#results-carousel', {
       slidesToScroll: 1,
-      slidesToShow: 3,
+      slidesToShow: 4,
       loop: true,
       infinite: true,
       autoplay: false,

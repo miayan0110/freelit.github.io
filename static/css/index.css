@@ -305,10 +305,12 @@ body {
   border-radius: 50%;
 }
 
-.my_carousel-control {
+#intensityCarousel .my_carousel-control,
+#colorCarousel .my_carousel-control {
   width: 60px;
   height: 30%;
-  top: 10%;
+  top: 50%;
+  bottom: auto;
   transform: translateY(-50%);
 }
 
@@ -318,6 +320,11 @@ body {
 
 .centered-text {
   text-align: center;
+}
+
+/* 讓 Intensity / Color 兩段說明等高，下面的圖才會對齊起始位置 */
+.demo-desc {
+  min-height: 4.5em;
 }
 
 /* intensity slider: like LightLab */
@@ -343,13 +350,13 @@ body {
 .intensity-slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: white;
   border: 0;
   cursor: pointer;
-  margin-top: -7px;
+  margin-top: -4.5px;
 }
 
 .intensity-slider::-moz-range-track {
@@ -359,8 +366,8 @@ body {
 }
 
 .intensity-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: white;
   border: 0;
